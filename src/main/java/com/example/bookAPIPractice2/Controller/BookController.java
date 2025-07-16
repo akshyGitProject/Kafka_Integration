@@ -14,6 +14,14 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+    //Build data controller:
+    @PostMapping("/books/bulk")
+    public List<Book> addBooksBulk(@RequestBody List<Book> books) {
+        return bookService.saveBooks(books);
+    }
+
+
+
     @RequestMapping("/test")
     public String test(){
 

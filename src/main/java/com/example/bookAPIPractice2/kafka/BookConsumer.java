@@ -1,4 +1,4 @@
-package com.example.bookAPIPractice2.Service;
+package com.example.bookAPIPractice2.kafka;
 
 import com.example.bookAPIPractice2.entity.Book;
 import org.springframework.kafka.annotation.KafkaListener;

@@ -2,6 +2,7 @@ package com.example.bookAPIPractice2.Service;
 
 import com.example.bookAPIPractice2.Repo.BookRepository;
 import com.example.bookAPIPractice2.entity.Book;
+import com.example.bookAPIPractice2.kafka.BookProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,4 +61,12 @@ public void deleteBook(int bookid){
         bookRepository.save(book);
     }
 
+    //For Buld data
+    public List<Book> saveBooks(List<Book> books) {
+        List<Book> savedBooks = bookRepository.saveAll(books);
+        for (Book book : savedBooks) {
+            bookProducer.sendBook(book); // send each to Kafka
+        }
+        return savedBooks;
+    }
 }
